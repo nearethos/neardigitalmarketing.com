@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>near. | Local Visibility for Local Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ─────────────────────────────────── */
+:root {
+  --teal:       #0b7a72;
+  --teal-hi:    #0fa398;
+  --teal-pale:  #e6f4f3;
+  --teal-faint: #f0faf9;
+  --teal-dark:  #085e58;
+  --ink:        #0a1f1e;
+  --ink-edge:   #1a3e3c;
+  --white:      #ffffff;
+  --off-white:  #f8fbfb;
+  --border:     #e0ecea;
+  --text:       #0f1f1e;
+  --text-mid:   #3a5250;
+  --text-muted: #6a8a88;
+  --text-faint: #9ab8b6;
+  --font-d: 'Fraunces', serif;
+  --font-b: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-b);
+  background: var(--off-white);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,31,30,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(11,163,152,0.12);
+  padding: 0 52px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-d);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-decoration: none;
+}
+.nav-logo .dot { color: var(--teal-hi); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.nav-links a:hover { color: var(--teal-hi); }
+
+.nav-cta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink) !important;
+  background: var(--teal-hi);
+  padding: 10px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease) !important;
+}
+.nav-cta:hover { background: var(--teal) !important; transform: translateY(-1px) !important; }
+
+/* ── HERO ─────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 52px;
+}
+
+/* Radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(11,122,114,0.22) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -300px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(11,163,152,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Ghost text */
+.hero-ghost {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-d);
+  font-size: 28vw;
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(11,163,152,0.06);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  padding-top: 64px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease) 0.1s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--teal-hi);
+  opacity: 0.7;
+}
+.hero-eyebrow span {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--teal-hi);
+}
+
+.hero-title {
+  font-family: var(--font-d);
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 32px;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--teal-hi);
+}
+.hero-title .line-1 {
+  display: block;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.2s forwards;
+}
+.hero-title .line-2 {
+  display: block;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.32s forwards;
+}
+.hero-title .line-3 {
+  display: block;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.44s forwards;
+}
+
+.hero-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-faint);
+  max-width: 520px;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.56s forwards;
+}
+.hero-body strong { color: rgba(255,255,255,0.7); font-weight: 400; }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.68s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-b);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--teal-hi);
+  padding: 16px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+.btn-primary .arrow { transition: transform 0.25s var(--ease); }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+.btn-ghost {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-faint);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(154,184,182,0.3);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.btn-ghost:hover { color: var(--teal-hi); border-color: var(--teal-hi); }
+
+.hero-location {
+  margin-top: 64px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) 0.8s forwards;
+}
+.hero-location::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: rgba(154,184,182,0.4);
+}
+.hero-location span {
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+/* ── TICKER ───────────────────────────────────── */
+.ticker-wrap {
+  background: var(--teal);
+  overflow: hidden;
+  padding: 14px 0;
+  position: relative;
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: tickerScroll 30s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+.ticker-item span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.ticker-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(10,31,30,0.4);
+  flex-shrink: 0;
+}
+
+/* ── WHAT WE DO ───────────────────────────────── */
+.section {
+  padding: 112px 52px;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.section-label::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--teal);
+}
+.section-num {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.section-title {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--teal);
+}
+
+.section-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-mid);
+  max-width: 540px;
+}
+
+/* Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+  cursor: default;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--teal-hi);
+  transition: width 0.4s var(--ease);
+}
+.service-card:hover { border-color: var(--teal-pale); transform: translateY(-2px); }
+.service-card:hover::before { width: 100%; }
+
+.service-num {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+}
+
+.service-title {
+  font-family: var(--font-d);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.service-body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-mid);
+}
+
+.service-card.dark {
+  background: var(--ink);
+  border-color: var(--ink-edge);
+}
+.service-card.dark .service-num { color: var(--teal-hi); }
+.service-card.dark .service-title { color: var(--white); }
+.service-card.dark .service-body { color: var(--text-faint); }
+.service-card.dark::before { background: var(--teal-hi); }
+.service-card.dark:hover { border-color: var(--teal-dark); }
+
+/* ── WHY NEAR ──────────────────────────────────── */
+.why-section {
+  background: var(--ink);
+  padding: 112px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.why-section::before {
+  content: '';
+  position: absolute;
+  top: -150px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(11,122,114,0.16) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.why-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.why-left .section-num { color: var(--teal-hi); }
+.why-left .section-title { color: var(--white); }
+.why-left .section-desc { color: var(--text-faint); }
+
+.why-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 8px;
+}
+
+.why-point {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(224,236,234,0.08);
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.why-point:first-child { border-top: 1px solid rgba(224,236,234,0.08); }
+
+.why-point-num {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--teal-hi);
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.why-point-content {}
+
+.why-point-title {
+  font-family: var(--font-d);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.why-point-body {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  line-height: 1.7;
+}
+
+/* ── HOW IT WORKS ─────────────────────────────── */
+.how-section {
+  background: var(--teal-faint);
+  padding: 112px 52px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.step-card {
+  background: var(--white);
+  padding: 44px 36px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.step-big-num {
+  font-family: var(--font-d);
+  font-size: 4rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--teal-pale);
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+}
+
+.step-title {
+  font-family: var(--font-d);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.step-body {
+  font-size: 0.86rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-mid);
+}
+
+/* ── NICHES ────────────────────────────────────── */
+.niches-section {
+  padding: 112px 52px;
+  background: var(--white);
+}
+
+.niches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 64px;
+}
+
+.niche-card {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.niche-card:hover {
+  background: var(--teal-faint);
+  border-color: var(--teal-pale);
+}
+
+.niche-icon {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.niche-title {
+  font-family: var(--font-d);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.niche-body {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ── CTA SECTION ───────────────────────────────── */
+.cta-section {
+  background: var(--ink);
+  padding: 112px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  bottom: -200px; right: -150px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(11,163,152,0.12) 0%, transparent 65%);
+}
+
+.cta-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-left {}
+
+.cta-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.cta-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--teal-hi);
+  opacity: 0.7;
+}
+.cta-eyebrow span {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--teal-hi);
+}
+
+.cta-title {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.cta-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--teal-hi);
+}
+
+.cta-body {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-faint);
+  max-width: 440px;
+}
+
+.cta-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.cta-detail {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cta-detail::before {
+  content: '→';
+  color: var(--teal-hi);
+}
+
+/* ── FOOTER ─────────────────────────────────────── */
+footer {
+  background: rgba(10,31,30,0.98);
+  border-top: 1px solid rgba(11,163,152,0.1);
+  padding: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-logo {
+  font-family: var(--font-d);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.footer-logo .dot { color: var(--teal-hi); }
+
+.footer-sub {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--teal-hi); }
+
+.footer-copy {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* ── DIVIDER ─────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 52px;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.fade-up.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up.delay-1 { transition-delay: 0.1s; }
+.fade-up.delay-2 { transition-delay: 0.2s; }
+.fade-up.delay-3 { transition-delay: 0.3s; }
+.fade-up.delay-4 { transition-delay: 0.4s; }
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">near<span class="dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Near</a></li>
+        <li><a href="#contact" class="nav-cta">Work With Us →</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-ghost">near</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span>Local Visibility · Austin, TX</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="line-1">When customers</span>
+      <span class="line-2">search, you should</span>
+      <span class="line-3"><em>be there.</em></span>
+    </h1>
+    <p class="hero-body">
+      Near helps local businesses show up on Google, in the map, in the results,
+      and in front of people who are <strong>already looking for what you offer.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.upwork.com/freelancers/NathanLocalSEO" class="btn-primary">
+        Hire us on Upwork <span class="arrow">→</span>
+      </a>
+      <a href="#services" class="btn-ghost">See what we do</a>
+    </div>
+    <div class="hero-location">
+      <span>Based in Austin, TX · Serving local businesses nationwide</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- duplicated for seamless loop -->
+    <div class="ticker-item"><span>SEO Site Audits</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Google Business Profile Optimization</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Local SEO</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Citation Building</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Review Generation</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Monthly Reporting</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>On-Page SEO</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>SEO Site Audits</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Google Business Profile Optimization</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Local SEO</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Citation Building</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Review Generation</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>Monthly Reporting</span><div class="ticker-dot"></div></div>
+    <div class="ticker-item"><span>On-Page SEO</span><div class="ticker-dot"></div></div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="section" id="services" style="background: var(--off-white);">
+  <div class="section-inner">
+    <div class="section-label fade-up">
+      <span class="section-num">01 What We Do</span>
+    </div>
+    <h2 class="section-title fade-up delay-1">Local visibility.<br><em>Start to finish.</em></h2>
+    <p class="section-desc fade-up delay-2">Every service we offer is designed to do one thing make your business easier to find by people nearby who are ready to hire.</p>
+
+    <div class="services-grid">
+      <div class="service-card fade-up delay-1">
+        <div class="service-num">01 Audit</div>
+        <div class="service-title">SEO Site Audit</div>
+        <div class="service-body">A comprehensive analysis of your website's search performance. We identify exactly what's holding your rankings back and give you a prioritized action plan with no fluff.</div>
+      </div>
+      <div class="service-card dark fade-up delay-2">
+        <div class="service-num">02 Visibility</div>
+        <div class="service-title">Google Business Profile Optimization</div>
+        <div class="service-body">Your Google Maps listing is often the first thing a nearby customer sees. We audit, optimize, and activate it so you show up and look the part when you do.</div>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <div class="service-num">03 Presence</div>
+        <div class="service-title">Citation Building</div>
+        <div class="service-body">Consistent Name, Address, and Phone across every directory on the web. Inconsistency erodes trust with Google. We find every instance and make it right.</div>
+      </div>
+      <div class="service-card fade-up delay-3">
+        <div class="service-num">04 Reputation</div>
+        <div class="service-title">Review Generation Strategy</div>
+        <div class="service-body">Reviews are the most powerful ranking and conversion signal in local search. We build you a repeatable system for turning satisfied customers into 5-star reviews.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY NEAR ── -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="why-left">
+      <div class="section-label fade-up">
+        <span class="section-num">02 Why Near</span>
+      </div>
+      <h2 class="section-title fade-up delay-1">Built for<br><em>local.</em></h2>
+      <p class="section-desc fade-up delay-2" style="color: var(--text-faint);">Most agencies are built for big budgets and national brands. Near is built for the local businesses that power real communities. That takes a different kind of focus.</p>
+    </div>
+    <div class="why-points fade-up delay-2">
+      <div class="why-point">
+        <div class="why-point-num">01</div>
+        <div class="why-point-content">
+          <div class="why-point-title">Plain-English deliverables</div>
+          <div class="why-point-body">Every report we produce is written for business owners, not developers. You'll understand exactly what we found, why it matters, and what to do next.</div>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-num">02</div>
+        <div class="why-point-content">
+          <div class="why-point-title">Video walkthroughs included</div>
+          <div class="why-point-body">Every audit comes with a short Loom video walking you through the key findings. You see the report and hear the explanation at the same time.</div>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-num">03</div>
+        <div class="why-point-content">
+          <div class="why-point-title">Focused on outcomes</div>
+          <div class="why-point-body">We measure success by one thing: whether more nearby customers can find you. Every recommendation connects directly to that goal.</div>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-point-num">04</div>
+        <div class="why-point-content">
+          <div class="why-point-title">Professional-grade tools</div>
+          <div class="why-point-body">We use the same tools that agencies charge five times as much to use on your behalf: Semrush, Google Search Console, and Google Business Profile.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <div class="section-label fade-up">
+      <span class="section-num">03 How It Works</span>
+    </div>
+    <h2 class="section-title fade-up delay-1">Simple process.<br><em>Real results.</em></h2>
+    <div class="steps-grid">
+      <div class="step-card fade-up delay-1">
+        <div class="step-big-num">01</div>
+        <div class="step-title">You tell us what you need</div>
+        <div class="step-body">Find us on Upwork and describe your business. We'll confirm it's a good fit and agree on the scope before any work begins.</div>
+      </div>
+      <div class="step-card fade-up delay-2">
+        <div class="step-big-num">02</div>
+        <div class="step-title">We do the work</div>
+        <div class="step-body">Using industry-standard tools, we audit or optimize your online presence, thoroughly and with attention to what actually moves rankings.</div>
+      </div>
+      <div class="step-card fade-up delay-3">
+        <div class="step-big-num">03</div>
+        <div class="step-title">You get a clear deliverable</div>
+        <div class="step-body">A professional branded report plus a short video walkthrough. No jargon, no filler. Just findings, priorities, and a path forward.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left fade-up">
+      <div class="cta-eyebrow">
+        <span>Ready to start</span>
+      </div>
+      <h2 class="cta-title">Keep your<br>customers <em>near.</em></h2>
+      <p class="cta-body">Find us on Upwork to get started. We respond within 24 hours and always confirm scope before any work begins.</p>
+    </div>
+    <div class="cta-right fade-up delay-2">
+      <a href="https://www.upwork.com/freelancers/NathanLocalSEO" class="btn-primary" style="font-size: 0.82rem; padding: 18px 36px;">
+        Hire us on Upwork <span class="arrow">→</span>
+      </a>
+      <div class="cta-detail">SEO Site Audits available now</div>
+      <div class="cta-detail">Google Business Profile Audits available now</div>
+      <div class="cta-detail">Based in Austin, TX</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>
+    <div class="footer-logo">near<span class="dot">.</span></div>
+    <div class="footer-sub">Digital Marketing</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Near</a></li>
+        <li><a href="https://instagram.com/neardigitalmarketing">Instagram</a></li>
+  </ul>
+  <div class="footer-copy">
+    © 2026 Near Digital Marketing<br>
+    Austin, Texas
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 40
+      ? 'rgba(11,163,152,0.2)'
+      : 'rgba(11,163,152,0.12)';
+  });
+</script>
+</body>
+</html>
