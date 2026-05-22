@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<!-- saved from url=(0067)file:///Users/nearethos/Downloads/near-website_10.html#about-nathan -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en"><head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>near. Local Visibility</title>
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./newindex_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&amp;family=Instrument+Serif:ital@0;1&amp;family=Syne:wght@400;600;700;800&amp;family=Instrument+Sans:ital,wght@0,400;0,500;1,400&amp;family=Caveat:wght@400;600;700&amp;display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -629,18 +627,18 @@ footer {
 </head>
 <body>
 
-<div class="cursor" id="cursor" style="left: 215px; top: 121px;"></div>
+<div class="cursor" id="cursor" style="left: 1745px; top: 811px;"></div>
 
 <!-- NAV -->
 <nav id="nav" class="scrolled">
-  <a href="file:///Users/nearethos/Downloads/near-website_10.html#" class="nav-logo">near<span>.</span></a>
+  <a href="#" class="nav-logo">near<span>.</span></a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="file:///Users/nearethos/Downloads/near-website_10.html#services">Services</a></li>
+      <li><a href="#services">Services</a></li>
 
-      <li><a href="file:///Users/nearethos/Downloads/near-website_10.html#about-nathan">About</a></li>
+      <li><a href="#about-nathan">About</a></li>
     </ul>
-    <a href="file:///Users/nearethos/Downloads/near-website_10.html#contact" class="nav-btn">Get in Touch</a>
+    <a href="#contact" class="nav-btn">Get in Touch</a>
   </div>
 </nav>
 
@@ -659,7 +657,7 @@ footer {
         Near helps local businesses show up where it counts. Search Engine Optimization (SEO), Google Business Profile (GBP) management, websites, and Citation Building built around the communities you actually serve.
       </p>
       <div class="hero-actions">
-        <a href="file:///Users/nearethos/Downloads/near-website_10.html#contact" class="btn-solid">
+        <a href="#contact" class="btn-solid">
           Get in Touch
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
         </a>
@@ -891,7 +889,7 @@ footer {
           </div>
           <div class="form-group">
             <label class="form-label" for="message">What can I help with?</label>
-            <textarea class="form-textarea" id="message" name="message" placeholder="Tell me a bit about your business and what you&#39;re looking for..." required=""></textarea>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Tell me a bit about your business and what you're looking for..." required=""></textarea>
           </div>
           <button type="submit" class="form-submit">Send Message</button>
           <div class="form-success" id="form-success">Thanks! I'll be in touch soon.</div>
@@ -904,12 +902,12 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <a href="file:///Users/nearethos/Downloads/near-website_10.html#" class="footer-logo">near<span>.</span></a>
+    <a href="#" class="footer-logo">near<span>.</span></a>
     <ul class="footer-links">
-      <li><a href="file:///Users/nearethos/Downloads/near-website_10.html#services">Services</a></li>
+      <li><a href="#services">Services</a></li>
 
-      <li><a href="file:///Users/nearethos/Downloads/near-website_10.html#about-nathan">About</a></li>
-      <li><a href="file:///Users/nearethos/Downloads/near-website_10.html#contact">Get in Touch</a></li>
+      <li><a href="#about-nathan">About</a></li>
+      <li><a href="#contact">Get in Touch</a></li>
     </ul>
     <div class="footer-copy">© 2026 near. All rights reserved.</div>
   </div>
@@ -947,6 +945,19 @@ footer {
     });
   }
 
+  // Download button
+  const dlBtn = document.createElement('button');
+  dlBtn.textContent = '⬇ Download HTML';
+  dlBtn.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;background:#0b7a72;color:#f5f0e8;border:none;padding:12px 20px;border-radius:100px;font-family:sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.15);';
+  dlBtn.onclick = () => {
+    const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'near-website.html';
+    a.click();
+  };
+  document.body.appendChild(dlBtn);
+
   // Reveal on scroll
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -954,7 +965,7 @@ footer {
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.r').forEach(el => io.observe(el));
-</script>
+</script><button style="position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: rgb(11, 122, 114); color: rgb(245, 240, 232); border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 12px 20px; border-radius: 100px; font-family: sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 16px;">⬇ Download HTML</button>
 
 
 </body></html>
