@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0061)file:///Users/nathanchanyarlak/Downloads/near-website_44.html -->
+<!-- saved from url=(0066)file:///Users/nearethos/Downloads/near-website_6.html#about-nathan -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -345,63 +345,53 @@ h2.display em { font-style: italic; color: var(--rust); }
 
 /* ── SERVICES ── */
 .services-section { background: var(--cream); }
-.services-head {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: end; margin-bottom: 60px;
+.services-head { text-align: center; margin-bottom: 20px; }
+.services-head .s-label { justify-content: center; }
+.services-intro {
+  text-align: center; max-width: 560px;
+  margin: 0 auto 52px;
+  font-size: 0.93rem; line-height: 1.8; color: var(--ash);
 }
-.services-body {
-  font-size: 0.95rem; line-height: 1.8; color: var(--ash);
+.journey {
+  display: grid;
+  grid-template-columns: 1fr 44px 1fr 44px 1fr;
+  align-items: center; margin-bottom: 52px;
 }
-
-.service-list { display: flex; flex-direction: column; gap: 0; }
-.service-item {
-  border-top: 1px solid rgba(26,21,16,0.1);
-  padding: 32px 0;
-  display: grid; grid-template-columns: 80px 1fr auto;
-  align-items: start; gap: 28px;
-  transition: padding-left 0.35s var(--ease);
-  position: relative;
-}
-.service-item:last-child { border-bottom: 1px solid rgba(26,21,16,0.1); }
-.service-item:hover { padding-left: 16px; }
-.service-item::before {
-  content: '';
-  position: absolute; left: 0; top: 50%;
-  width: 0; height: 2px; background: var(--rust);
-  transform: translateY(-50%);
-  transition: width 0.35s var(--ease);
-}
-.service-item:hover::before { width: 10px; }
-
-.si-icon {
-  width: 44px; height: 44px; flex-shrink: 0;
-  background: rgba(11,122,114,0.08);
-  border-radius: 10px;
+.journey-arrow {
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.3s;
 }
-.service-item:hover .si-icon { background: rgba(11,122,114,0.15); }
-.si-icon svg { width: 20px; height: 20px; stroke: var(--rust); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.si-content { }
-.si-title {
-  font-family: var(--font-ui);
-  font-size: 1rem; font-weight: 700;
-  color: var(--ink); margin-bottom: 6px;
-  letter-spacing: -0.01em;
+.journey-arrow svg { width: 20px; height: 20px; display: block; }
+.journey-panel {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 36px 24px 32px;
+  background: var(--white); border: 1px solid var(--border);
+  height: 100%;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
 }
-.si-body {
-  font-size: 0.85rem; line-height: 1.7; color: var(--ash);
+.journey-panel:hover { box-shadow: 0 8px 24px rgba(26,21,16,0.07); transform: translateY(-3px); }
+.journey-illo {
+  width: 72px; height: 72px; flex-shrink: 0;
+  margin-bottom: 20px;
 }
-.si-tag {
-  font-family: var(--font-ui);
-  font-size: 0.58rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--rust);
-  background: rgba(196,92,46,0.1);
-  padding: 5px 12px; border-radius: 100px;
-  white-space: nowrap; margin-top: 4px;
-  align-self: flex-start;
+.journey-illo svg { width: 72px; height: 72px; display: block; }
+.journey-title {
+  font-family: var(--font-disp); font-size: 1.1rem; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--ink); margin-bottom: 8px;
 }
+.journey-body { font-size: 0.82rem; line-height: 1.7; color: var(--ash); }
+.service-chips {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 44px;
+}
+.service-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 100px;
+  font-family: var(--font-ui); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); white-space: nowrap;
+  transition: border-color 0.22s, color 0.22s, transform 0.22s var(--ease);
+}
+.service-chip:hover { border-color: var(--rust); color: var(--rust); transform: translateY(-2px); }
+.service-chip svg { width: 13px; height: 13px; flex-shrink: 0; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; display: block; }
 
 /* ── PROCESS ── */
 .process-section { background: var(--sand); }
@@ -620,8 +610,9 @@ footer {
   .hero-title { font-size: clamp(2.8rem, 10vw, 4.5rem); }
   .about-nathan-grid { grid-template-columns: 1fr; gap: 24px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .services-head { grid-template-columns: 1fr; gap: 16px; }
-  .service-item { grid-template-columns: 44px 1fr; }
+  .journey { grid-template-columns: 1fr; }
+  .journey-arrow { padding-top: 0; transform: rotate(90deg); }
+  .service-chips { gap: 8px; }
   .si-tag { display: none; }
   .process-steps { grid-template-columns: 1fr 1fr; }
   .why-grid { grid-template-columns: 1fr; }
@@ -638,18 +629,18 @@ footer {
 </head>
 <body>
 
-<div class="cursor" id="cursor" style="left: 200px; top: 116px;"></div>
+<div class="cursor" id="cursor" style="left: 1px; top: 178px;"></div>
 
 <!-- NAV -->
 <nav id="nav" class="scrolled">
-  <a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#" class="nav-logo">near<span>.</span></a>
+  <a href="file:///Users/nearethos/Downloads/near-website_6.html#" class="nav-logo">near<span>.</span></a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#about-nathan">About</a></li>
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#services">Services</a></li>
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#process">Process</a></li>
+      <li><a href="file:///Users/nearethos/Downloads/near-website_6.html#services">Services</a></li>
+
+      <li><a href="file:///Users/nearethos/Downloads/near-website_6.html#about-nathan">About</a></li>
     </ul>
-    <a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#contact" class="nav-btn">Get in Touch</a>
+    <a href="file:///Users/nearethos/Downloads/near-website_6.html#contact" class="nav-btn">Get in Touch</a>
   </div>
 </nav>
 
@@ -668,7 +659,7 @@ footer {
         Near helps local businesses show up where it counts. Search Engine Optimization (SEO), Google Business Profile (GBP) management, websites, and Citation Building built around the communities you actually serve.
       </p>
       <div class="hero-actions">
-        <a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#contact" class="btn-solid">
+        <a href="file:///Users/nearethos/Downloads/near-website_6.html#contact" class="btn-solid">
           Get in Touch
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h8M6 2l4 4-4 4"></path></svg>
         </a>
@@ -739,117 +730,89 @@ footer {
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about-nathan-section" id="about-nathan">
-  <div class="inner">
-    <div class="about-nathan-grid r in">
-      <div>
-        <div class="s-label">About</div>
-        <h2 class="display">The person <em>behind near.</em></h2>
-        <div class="about-badges">
-          <div class="about-badge">10+ Years of SEO Experience</div>
-          <div class="about-badge">Certified Google Digital Marketing &amp; E-commerce Professional</div>
-          <div class="about-badge">Google Analytics (GA4) Certified</div>
-          <div class="about-badge">B.S. in Business Marketing, Texas A&amp;M Corpus Christi</div>
-        </div>
-      </div>
-      <div class="about-nathan-body">
-        <p>Hi, I'm Nathan. With over 10 years of SEO experience, I've worked with businesses ranging from recording studios to tech companies, and I specialize in local visibility including SEO, GBP optimization, and building websites that actually convert.</p>
-        <p>I pride myself on staying at the cutting edge of an ever-changing industry. What worked two years ago might not work today, and what works today will look different tomorrow. My job is to stay ahead of it all, so you can focus on what you do best.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SERVICES -->
 <section class="services-section" id="services">
   <div class="inner">
-    <div class="services-head">
-      <div class="r in">
-        <div class="s-label">Services</div>
-        <h2 class="display">What we <em>do</em></h2>
-      </div>
-      <p class="services-body r d1 in">
-        Every service is built around one goal: more of the right people finding your business in the places they're already looking.
-      </p>
+    <div class="services-head r in">
+      <div class="s-label">What we do</div>
+      <h2 class="display">From invisible <em>to unforgettable.</em></h2>
     </div>
-    <div class="service-list">
-      <div class="service-item r d1 in">
-        <div class="si-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg></div>
-        <div class="si-content">
-          <div class="si-title">SEO Audit &amp; Optimization</div>
-          <div class="si-body">A thorough look at your website's technical health, on-page signals, and local keyword targeting. You get a clear picture of what's working and what to fix, without the jargon.</div>
-        </div>
-        
-      </div>
-      <div class="service-item r d2 in">
-        <div class="si-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></div>
-        <div class="si-content">
-          <div class="si-title">GBP Optimization &amp; Audit</div>
-          <div class="si-body">Your GBP is often the first thing a customer sees. Every field, category, photo, and post gets dialed in so you show up higher in local results and actually look worth calling.</div>
-        </div>
-        
-      </div>
-      <div class="service-item r d3 in">
-        <div class="si-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
-        <div class="si-content">
-          <div class="si-title">Website Creation</div>
-          <div class="si-body">Fast, clean websites built to turn visitors into customers. Not a template dropped into a builder. Something that actually fits your business, your tone, and the people you want to reach.</div>
-        </div>
-        
-      </div>
-      <div class="service-item r d4 in">
-        <div class="si-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></div>
-        <div class="si-content">
-          <div class="si-title">Citation Building</div>
-          <div class="si-body">Your business name, address, and phone number listed accurately and consistently across Yelp, Apple Maps, Bing, and dozens of other directories. It sounds simple, but it is one of the most important trust signals Google looks for.</div>
-        </div>
-        
-      </div>
-      <div class="service-item r d4 in">
-        <div class="si-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"></path></svg></div>
-        <div class="si-content">
-          <div class="si-title">AI Search &amp; More</div>
-          <div class="si-body">Search is changing. More people are getting answers directly from AI tools like ChatGPT and Google's AI Overview before they ever click a result. Near stays current with how these systems work and helps position your business as a trusted source across both traditional search and AI-powered results. Plus local content, review guidance, and anything else that keeps you in front of the right people.</div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="services-intro r d1 in">Near takes local businesses, new or established, and builds the kind of online presence that turns searches into customers through the door.</p>
 
-<!-- PROCESS -->
-<section class="process-section" id="process">
-  <div class="inner">
-    <div class="process-head r in">
-      <div class="s-label">How It Works</div>
-      <h2 class="display">Four steps, <em>no fluff.</em></h2>
+    <div class="journey">
+      <div class="journey-panel r d1 in">
+        <div class="journey-illo">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Store / building -->
+            <rect x="8" y="28" width="48" height="30" rx="1" fill="var(--rust)" opacity="0.08"></rect>
+            <rect x="8" y="28" width="48" height="30" rx="1" stroke="var(--rust)" stroke-width="2"></rect>
+            <!-- Awning -->
+            <path d="M4 28 L32 12 L60 28" stroke="var(--rust)" stroke-width="2" stroke-linejoin="round"></path>
+            <!-- Door -->
+            <rect x="25" y="42" width="14" height="16" rx="1" stroke="var(--rust)" stroke-width="1.8"></rect>
+            <circle cx="36" cy="50" r="1.5" fill="var(--rust)"></circle>
+            <!-- Windows -->
+            <rect x="12" y="33" width="12" height="9" rx="1" stroke="var(--rust)" stroke-width="1.5"></rect>
+            <rect x="40" y="33" width="12" height="9" rx="1" stroke="var(--rust)" stroke-width="1.5"></rect>
+            <!-- Sign -->
+            <rect x="20" y="18" width="24" height="7" rx="1" fill="var(--rust)" opacity="0.15" stroke="var(--rust)" stroke-width="1.5"></rect>
+          </svg>
+        </div>
+        <div class="journey-title">Your Business</div>
+        <div class="journey-body">New or established, your online presence is your first impression. Most customers find you before they ever walk in.</div>
+      </div>
+
+      <div class="journey-arrow r d2 in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+      </div>
+
+      <div class="journey-panel r d2 in">
+        <div class="journey-illo">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Magnifying glass body -->
+            <circle cx="26" cy="26" r="16" fill="var(--rust)" opacity="0.08" stroke="var(--rust)" stroke-width="2"></circle>
+            <line x1="37" y1="37" x2="56" y2="56" stroke="var(--rust)" stroke-width="3" stroke-linecap="round"></line>
+            <!-- Chart bars inside glass -->
+            <rect x="18" y="30" width="5" height="8" rx="1" fill="var(--rust)" opacity="0.5"></rect>
+            <rect x="25" y="24" width="5" height="14" rx="1" fill="var(--rust)" opacity="0.7"></rect>
+            <rect x="32" y="20" width="5" height="18" rx="1" fill="var(--rust)"></rect>
+            <!-- Up arrow on top bar -->
+            <path d="M34.5 18 L34.5 14 M32 16 L34.5 13.5 L37 16" stroke="var(--rust)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="journey-title">We Optimize Everything</div>
+        <div class="journey-body">SEO, GBP, Website Creation, Citation Building, AI Search — every touchpoint dialed in so the right people find you first.</div>
+      </div>
+
+      <div class="journey-arrow r d3 in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+      </div>
+
+      <div class="journey-panel r d3 in">
+        <div class="journey-illo">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Location pin -->
+            <path d="M32 6C24.268 6 18 12.268 18 20c0 10.5 14 32 14 32s14-21.5 14-32c0-7.732-6.268-14-14-14z" fill="var(--rust)" opacity="0.12" stroke="var(--rust)" stroke-width="2"></path>
+            <circle cx="32" cy="20" r="5" fill="var(--rust)" opacity="0.3" stroke="var(--rust)" stroke-width="1.8"></circle>
+            <!-- Signal rings -->
+            <path d="M44 10 Q50 18 44 26" stroke="var(--rust)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"></path>
+            <path d="M49 7 Q58 18 49 29" stroke="var(--rust)" stroke-width="1.8" stroke-linecap="round" opacity="0.25"></path>
+            <path d="M20 10 Q14 18 20 26" stroke="var(--rust)" stroke-width="1.8" stroke-linecap="round" opacity="0.5"></path>
+            <path d="M15 7 Q6 18 15 29" stroke="var(--rust)" stroke-width="1.8" stroke-linecap="round" opacity="0.25"></path>
+          </svg>
+        </div>
+        <div class="journey-title">Customers Find You</div>
+        <div class="journey-body">More visibility online means more of the right people walking through your door. That is the whole point.</div>
+      </div>
     </div>
-    <div class="process-steps">
-      <div class="ps r d1 in">
-        <div class="ps-n">1</div>
-        <div class="ps-step">Step 01</div>
-        <div class="ps-title">Audit</div>
-        <div class="ps-body">A clear picture of where you stand. SEO health, GBP setup, citations, and how you compare to nearby competitors. No guesswork. Just the facts.</div>
-      </div>
-      <div class="ps r d2 in">
-        <div class="ps-n">2</div>
-        <div class="ps-step">Step 02</div>
-        <div class="ps-title">Strategy</div>
-        <div class="ps-body">A focused plan built around your business, your location, and what you're actually trying to accomplish. You know exactly what's being done and why before anything moves.</div>
-      </div>
-      <div class="ps r d3 in">
-        <div class="ps-n">3</div>
-        <div class="ps-step">Step 03</div>
-        <div class="ps-title">Execution</div>
-        <div class="ps-body">The actual work gets done. Optimizations, builds, listings, content. All of it handled carefully and with attention to the things that search engines pay attention to.</div>
-      </div>
-      <div class="ps r d4 in">
-        <div class="ps-n">4</div>
-        <div class="ps-step">Step 04</div>
-        <div class="ps-title">Visibility</div>
-        <div class="ps-body">Rankings improve. Local customers start finding you instead of someone else. That's what this was all for.</div>
-      </div>
+
+    <div class="service-chips r d2 in">
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg>SEO</div>
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>GBP Optimization</div>
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>Website Creation</div>
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Citation Building</div>
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>AI Search</div>
+      <div class="service-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>Site Audits</div>
     </div>
   </div>
 </section>
@@ -876,6 +839,27 @@ footer {
         <div class="wc-mark">03</div>
         <div class="wc-title">Fair pricing, serious craft</div>
         <div class="wc-body">Small businesses deserve good work at a fair price. Near offers professional-level local SEO without the overhead of a big agency or the guesswork of going it alone.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ABOUT -->
+<section class="about-nathan-section" id="about-nathan">
+  <div class="inner">
+    <div class="about-nathan-grid r in">
+      <div>
+        <div class="s-label">About</div>
+        <h2 class="display">The person <em>behind near.</em></h2>
+        <div class="about-badges">
+          <div class="about-badge">10+ Years of SEO Experience</div>
+          <div class="about-badge">Certified Google Digital Marketing &amp; E-commerce Professional</div>
+          <div class="about-badge">Google Analytics (GA4) Certified</div>
+          <div class="about-badge">B.S. in Business Marketing, Texas A&amp;M Corpus Christi</div>
+        </div>
+      </div>
+      <div class="about-nathan-body">
+        <p>Hi, I'm Nathan. With over 10 years of SEO experience, I've worked with businesses ranging from recording studios to tech companies, and I specialize in local visibility including SEO, GBP optimization, and building websites that actually convert.</p>
+        <p>I pride myself on staying at the cutting edge of an ever-changing industry. What worked two years ago might not work today, and what works today will look different tomorrow. My job is to stay ahead of it all, so you can focus on what you do best.</p>
       </div>
     </div>
   </div>
@@ -920,12 +904,12 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#" class="footer-logo">near<span>.</span></a>
+    <a href="file:///Users/nearethos/Downloads/near-website_6.html#" class="footer-logo">near<span>.</span></a>
     <ul class="footer-links">
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#about-nathan">About</a></li>
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#services">Services</a></li>
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#process">Process</a></li>
-      <li><a href="file:///Users/nathanchanyarlak/Downloads/near-website_44.html#contact">Get in Touch</a></li>
+      <li><a href="file:///Users/nearethos/Downloads/near-website_6.html#services">Services</a></li>
+
+      <li><a href="file:///Users/nearethos/Downloads/near-website_6.html#about-nathan">About</a></li>
+      <li><a href="file:///Users/nearethos/Downloads/near-website_6.html#contact">Get in Touch</a></li>
     </ul>
     <div class="footer-copy">© 2026 near. All rights reserved.</div>
   </div>
