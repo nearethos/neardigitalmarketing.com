@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>near. Local Visibility</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABhUlEQVR4nO2XMUvDQBiG3xx1sdatuBmp4G+IQgUXhYJD0aHg4mC6pegkqJNKt0pws/0D+g/UsQ4pKMUWHHRK3KSLlFwXSeogxiQmTW29ZMk73ft9d7wP3PHBcXBpkp/tu2v/qZ72ytk9CTPcK4P4NcKCIGGHuyG4KMLtIsFbYoAYIAaIAdgqYTdZQcD15dWvTYViEetrq1heXMJMOg1d1/H08oyyLKOuKGMBeI7iaqWCrY1Ny791OtguSWi22yiJIg539wAApmliJZ/HQ+txZIChrkCuXqCuKNApxXmt9nOYEEjizsjhQwM0W21rrVMK2utZfiEzzx7gvdt1eMMwrPVUMskewOybY4UMUiJ4y3iaOD1w+I+jssMznQPucK8aMwCvcK9e5JPQAZAVBFBVcwwhALi/ucXZ8QnyuRyoqmE6lbJ6GZ4HVTXsS9JIAI5HeNdoIDnHDzwQ1P+rmF2B+7X79Zi+AS8Id40DovmYAF//RPK9iCIcsF1BmBD2LOLXCCMcAD4BRkyBjjocozMAAAAASUVORK5CYII=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700;1,9..144,900&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -191,6 +193,11 @@ nav.scrolled { background: rgba(245,240,232,0.94); backdrop-filter: blur(12px); 
   height: auto;
   object-fit: contain;
   display: block;
+  animation: gentle-bob 6s ease-in-out infinite;
+}
+@keyframes gentle-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
 }
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(-2deg); }
